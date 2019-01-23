@@ -7,6 +7,7 @@
                     <div class="song-img">
                         <img :src="item.thumbUrl" alt="" @load='imgLoad()'>
                         <span class="icon-headphones">{{item.playCount}}</span>
+                        <i class="icon-play2"></i>
                     </div>
                     <p class="song-text">{{item.name}}</p>
                 </a>
@@ -32,13 +33,12 @@ export default {
     },
     methods: {
         imgLoad() {
-            this.imgLoaded++
-            if (this.imgLoaded === 6) {
-                var el = document.getElementsByClassName('loading-box')[0]
-                el.style.display = 'none'
-            }
+            // this.imgLoaded++
+            // if (this.imgLoaded === 6) {
+            //     var el = document.getElementsByClassName('loading-box')[0]
+            //     el.style.display = 'none'
+            // }
         },
-
     },
     created() {
         // 初始化数据
@@ -79,6 +79,13 @@ export default {
                         top: 0;
                         font-size: 10px;
                         color: #fff;
+                    }
+                    i {
+                        position: absolute;
+                        right: 8px;
+                        bottom: 8px;
+                        font-size: 24px;
+                        color: #f5f5f5;
                     }
                 }
                 p {

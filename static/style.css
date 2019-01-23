@@ -67,3 +67,19 @@
 .icon-stop2:before {
     content: "\ea1e";
 }
+
+.icon-search:before {
+    content: "\e986";
+}
+
+.icon-cross:before {
+    content: "\ea0f";
+}
+
+.icon-cancel-circle:before {
+    content: "\ea0d";
+}
+
+.icon-clock:before {
+    content: "\e94e";
+}

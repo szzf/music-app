@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="recom">
         <recomList :songList='recomList'></recomList>
         <newList :songList='newList'></newList>
     </div>
@@ -23,7 +23,7 @@ export default {
     },
     methods: {
         getRecomList(count) {
-            axios.get('http://192.168.0.104:3000/personalized').then((data) => {
+            axios.get('http://192.168.0.106:3000/personalized').then((data) => {
                 var dataArr = data.data.result.slice(0, count)
                 var thumbImg = '?imageView&thumbnail=369x0&quality=75&tostatic=0'
                 dataArr.forEach(item => {
@@ -37,21 +37,19 @@ export default {
                 })
             })
         },
-        getNewList(count) {
-            axios.get('http://192.168.0.104:3000/personalized/newsong').then((data) => {
-                var dataArr = data.data.result.slice(0, count)
+        getNewList() {
+            axios.get('http://192.168.0.106:3000/personalized/newsong').then((data) => {
+                var dataArr = data.data.result
                 dataArr.forEach(item => {
                     var temp = {
                         id: item.id,
                         name: item.name,
                         alias: item.song.alias[0],
-                        subTitle: this.artistsToStr(item.song.artists) + ' - ' + item.name,
-                        // artists: this.artistsToStr(item.song.artists),
+                        artists: item.song.artists,
+                        album: item.song.album.name
                     }
                     this.newList.push(temp)
                 })
-                console.log(this.newList)
-                console.log(dataArr)
             })
         },
         playCountAbbr(num) {
@@ -75,13 +73,10 @@ export default {
     },
     created() {
         this.getRecomList(6)
-        this.getNewList(10)
+        this.getNewList()
     }
 }
 </script>
 
 <style lang="scss">
-.main {
-    padding-top: 106px;
-}
 </style>

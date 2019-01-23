@@ -2,13 +2,18 @@
     <div class="new-list">
         <h2 class="list-title">最新音乐</h2>
         <ul class="songlist">
-            <li class="songlist-item" v-for="item in songList" :key="item.id">
-                <div class="content">
-                    <h4 class="title hid">{{item.name}}</h4>
-                    <span class="sub-title hid">{{item.subTitle}}</span>
-                </div>
-                <div class="play-btn">
-                    <i class="icon-play2"></i>
+            <li class="songlist-item bor-btm bor-mobie" v-for="item in songList" :key="item.id">
+                <div class="content-wrap bor-mobie bor-btm">
+                    <div class="content">
+                        <div class="title hid">
+                            <h4 class="name">{{item.name}}</h4>
+                            <span class="alias">{{item.alias && '('+item.alias+')'}}</span>
+                        </div>
+                        <span class="art hid">{{item.artists | artistsFormatter()}} - {{item.album}}</span>
+                    </div>
+                    <div class="play-btn">
+                        <i class="icon-play2"></i>
+                    </div>
                 </div>
             </li>
         </ul>
@@ -32,73 +37,47 @@ export default {
             position: relative;
             display: flex;
             margin-left: 10px;
-            border-bottom: 1px solid #f5f5f5;
-            .content {
-                flex: 1;
-                padding: 6px 0;
-                .title {
-                    font-size: 16px;
-                    line-height: 24px;
-                    font-weight: 400;
-                }
-                .sub-title {
-                    display: block;
-                    font-size: 12px;
-                    // font-weight: 100;
-                    color: #888;
+            .content-wrap {
+                display: flex;
+                flex: 1 1 auto;
+                .content {
+                    padding: 6px 0;
+                    flex: 1;
+                    width: 0;
+                    .title {
+                        .name {
+                            display: inline-block;
+                            font-size: 17px;
+                            line-height: 24px;
+                            font-weight: 400;
+                        }
+                        .alias {
+                            margin-left: 4px;
+                            font-size: 16px;
+                            color: #888;
+                        }
+                    }
+                    .art {
+                        display: block;
+                        font-size: 12px;
+                        line-height: 20px;
+                        color: #888;
+                    }
                 }
             }
             .play-btn {
-                position: relative;
-                padding: 0 12px;
+                display: flex;
+                align-items: center;
+                padding: 0 14px;
                 i {
-                    position: relative;
-                    top: 13px;
-                    margin-top: -12px;
                     width: 24px;
                     height: 24px;
                     font-size: 24px;
                     color: #888;
                     opacity: 0.5;
-                    vertical-align: middle;
                 }
             }
         }
     }
 }
-
-.hid {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    word-break: normal;
-}
-
-// @media screen and (-webkit-min-device-pixel-ratio: 2) {
-//     .bor-b::after {
-//         content: "";
-//         position: absolute;
-//         height: 1px;
-//         width: 100%;
-//         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-//         top: 0;
-//         left: 0;
-//         transform: scale(0.5);
-//         z-index: 10;
-//     }
-// }
-
-// @media screen and (-webkit-min-device-pixel-ratio: 3) {
-//     .bor-b::after {
-//         content: "";
-//         position: absolute;
-//         height: 1px;
-//         width: 100%;
-//         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-//         bottom: 0;
-//         left: 0;
-//         transform: scale(0.3333333);
-//         z-index: 10;
-//     }
-// }
 </style>

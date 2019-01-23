@@ -1,15 +1,20 @@
 <template>
     <div class="nav">
-        <ul class="nav-list">
-            <li class="nav-item" :class='{"selected":tabIndex==1}' @click='active(1)'>
-                <a href="#" class="recom">新歌推荐</a>
+        <ul class="nav-list bor-btm bor-mobie">
+            <li class="nav-item" @click='active(1)'>
+                <!-- <a href="#" class="recom">新歌推荐</a> -->
+                <router-link to="/recom" class="recom">新歌推荐</router-link>
             </li>
-            <li class="nav-item" :class='{"selected":tabIndex==2}' @click='active(2)'>
-                <a href="#" class="toplist">排行榜</a>
+            <li class="nav-item" @click='active(2)'>
+                <!-- <a href="#" class="hotlist">排行榜</a> -->
+                <router-link to="/hotlist" class="hotlist">热歌榜</router-link>
             </li>
-            <li class="nav-item" :class='{"selected":tabIndex==3}' @click='active(3)'>
-                <a href="#" class="search">搜索</a>
+            <li class="nav-item" @click='active(3)'>
+                <!-- <a href="#" class="search">搜索</a> -->
+                <router-link to="/search" class="search">搜索</router-link>
+
             </li>
+
         </ul>
     </div>
 </template>
@@ -23,13 +28,15 @@ export default {
     },
     methods: {
         active(index) {
+
             this.tabIndex = index
             if (index === 1) {
 
             } else if (index === 2) {
 
             } else if (index === 3) {
-
+                var oInput = document.querySelector('#search')
+                oInput.focus();
             }
         }
     }
@@ -46,42 +53,33 @@ export default {
     .nav-list {
         display: flex;
         .nav-item {
+            position: relative;
             flex: 1;
             width: 33%;
             text-align: center;
+            box-sizing: border-box;
             a {
+                display: inline-block;
+                padding: 0 5px;
+                height: 100%;
                 font-size: 15px;
                 line-height: 40px;
                 text-decoration: none;
+                box-sizing: border-box;
             }
         }
     }
-    .selected {
-        a {
-            color: #d33a31;
-        }
-        &.nav-item::after {
-            content: "";
-            display: block;
-            left: 0;
-            bottom: 0px;
-            right: 0;
-            top: 0;
-            height: 2px;
-            background-color: #d33a31;
-        }
-    }
+}
+.router-link-active {
+    color: #d33a31;
     &::after {
-        position: absolute;
         content: "";
-        top: -1px;
-        left: 0;
-        pointer-events: none;
-        box-sizing: border-box;
+        position: absolute;
         width: 100%;
-        height: 100%;
-        transform-origin: top left;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #d33a31;
     }
 }
 </style>
